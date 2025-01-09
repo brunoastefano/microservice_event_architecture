@@ -13,8 +13,8 @@ def applyDiscountToOrder(order: Order):
     db_connector = psycopg.connect(conn_string)
     db_cursor = db_connector.cursor()
 
-    ################
-    ### CALL DB FUNCTION TO UPDATE THE ORDER
+    db_cursor.execute('select update_order_discount(%s,%s,%s)', (order.orderId, order.discountApplied, order.total))
+    db_connector.commit()
   
   except (Exception, psycopg.DatabaseError) as error:
     raise error
