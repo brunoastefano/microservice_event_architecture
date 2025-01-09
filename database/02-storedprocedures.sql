@@ -75,3 +75,21 @@ begin
 
     commit;
 end;$$;
+
+create or replace function insert_log(
+  log_level int,
+  log_level_name text,
+  log_message text,
+  log_owner text
+) returns void
+language plpgsql    
+as $$
+begin
+
+    insert into logging(log_level, log_level_name, log_message, log_owner)
+    values(log_level, log_level_name, log_message, log_owner);
+
+    return;
+
+    commit;
+end;$$;
