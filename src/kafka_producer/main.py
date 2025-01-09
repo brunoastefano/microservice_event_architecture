@@ -18,9 +18,10 @@ def createOrder(order: Order):
         order_id = row[0]
         order.setId(order_id)
 
-    #######################
-    ### CALL DB FUNCTION TO SAVE ORDER ITEMS
-  
+    for item in order.items:
+      db_cursor.execute('select insert_order_item(%s,%s,%s)', (order.orderId, item["productId"], item["quantity"]))
+      db_connector.commit()
+
   except (Exception, psycopg.DatabaseError) as error:
     raise error
 
@@ -36,7 +37,7 @@ def main():
                           )
 
   order = Order(customerId = 1,
-                items = [{"productId": "A1", "quantity": 2}, {"productId": "B2", "quantity": 1}],
+                items = [{"productId": "1", "quantity": 2}, {"productId": "2", "quantity": 1}],
                 total = 150.00)
 
   createOrder(order)
