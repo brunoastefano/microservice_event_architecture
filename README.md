@@ -51,3 +51,9 @@ docker exec -it <container-id> /opt/kafka/bin/kafka-console-consumer.sh --topic 
 * Data Base -> PostgreSQL
 * Event Broker -> Kafka
 * Services -> Python
+
+## TO DO
+* Create packages for __lib_order__ and  __db_log__;
+* Resolve kafka conncetivity problems;
+* Resolve logger problems for consumer;
+* Implement __API__ to visualize the system, both the logs and the orders;
