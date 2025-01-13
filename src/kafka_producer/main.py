@@ -35,12 +35,12 @@ def createOrder(order: Order, db_connector: psycopg.Connection, logger: logging.
       db_cursor.close()
 
 def main(): 
-  producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
+  producer = KafkaProducer(bootstrap_servers=['kafka:9092'],
                           value_serializer=lambda x:dumps(x).encode('utf-8'),
                           retries=3
                           )
   
-  conn_string = "host='localhost' dbname='companydb' user='postgres' password='postgrespassword'"
+  conn_string = "host='postgres' dbname='companydb' user='postgres' password='postgrespassword'"
   db_connector = psycopg.connect(conn_string)
 
   db_log_handler = DbLogHandler(db_connector)
