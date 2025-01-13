@@ -40,14 +40,14 @@ docker exec -it <container-id> /opt/kafka/bin/kafka-console-consumer.sh --topic 
 ```
 
 ### Navigating into PostgreSQL
-`docker ps` To list the containers
-`docker exec -it <container-id> bash` To open the bash for the postgres container
-`psql -U postgres` To log into DB environment
-`\c companydb` To connect into the companydb database (Change the name of the database if needed)
-`\dt` To list all tables
-`select * from table "order";` To list all active orders in table order
+*`docker ps` To list the containers
+*`docker exec -it <container-id> bash` To open the bash for the postgres container
+*`psql -U postgres` To log into DB environment
+*`\c companydb` To connect into the companydb database (Change the name of the database if needed)
+*`\dt` To list all tables
+*`select * from table "order";` To list all active orders in table order
 
 ## Stack 
-Data Base -> PostgreSQL
-Event Broker -> Kafka
-Services -> Python
+*Data Base -> PostgreSQL
+*Event Broker -> Kafka
+*Services -> Python
