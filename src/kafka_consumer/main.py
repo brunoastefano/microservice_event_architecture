@@ -22,21 +22,21 @@ def applyDiscountToOrder(order: Order, db_connector: psycopg.Connection):
       db_connector.close()
 
 def main(): 
-  producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
+  producer = KafkaProducer(bootstrap_servers=['kafka:9092'],
                           value_serializer=lambda x:dumps(x).encode('utf-8'),
                           retries=3
                           )
 
   consumer = KafkaConsumer(
     'order.created', 
-    bootstrap_servers = ['localhost:9092'],
+    bootstrap_servers = ['kafka:9092'],
     auto_offset_reset = 'earliest',
     enable_auto_commit = True,
     group_id = 'order',
     value_deserializer = lambda x : loads(x.decode('utf-8'))
     )
   
-  conn_string = "host='localhost' dbname='companydb' user='postgres' password='postgrespassword' keepalives=1 keepalives_idle=30 keepalives_interval=10 keepalives_count=5"
+  conn_string = "host='postgres' dbname='companydb' user='postgres' password='postgrespassword' keepalives=1 keepalives_idle=30 keepalives_interval=10 keepalives_count=5"
   db_connector = psycopg.connect(conn_string)
 
   for createdOrderMsg in consumer:

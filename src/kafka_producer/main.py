@@ -37,7 +37,8 @@ def createOrder(order: Order, db_connector: psycopg.Connection, logger: logging.
 def main(): 
   producer = KafkaProducer(bootstrap_servers=['kafka:9092'],
                           value_serializer=lambda x:dumps(x).encode('utf-8'),
-                          retries=3
+                          retries=3,
+                          max_block_ms = 1200000
                           )
   
   conn_string = "host='postgres' dbname='companydb' user='postgres' password='postgrespassword'"
